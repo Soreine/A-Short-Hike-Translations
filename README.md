@@ -9,7 +9,7 @@ A tutorial on how to write your own translation will be made available here shor
 
 I have yet to find the asset for the game menus, the fishing book,the  treasure map, and other items description.
 
-### Structure of MountainQuest.yarn
+### Structure of `MountainQuest.yarn`
 
 The different pieces of texts (a given dialogue with a Non Player Character (NPC), reading a sign, etc.) are preceded by `===` and a title and other metadata, like so: 
 
@@ -58,3 +58,18 @@ Sometimes, a dialogue will lead to another. This is done with a reference to its
 ## Making a translation patch
 
 Instructions will be given here on how to make a patch for the game containing the translated texts.
+
+It will probably consist of using [Unity Assets Bundle Extractor (UABE)](https://github.com/DerPopo/UABE/) to extract the text assets, then modifying them, and using UABE again to bundle them back into a patch for the game.
+
+Here's how I managed to extract the text assets (see `MountainQuest.yarn`): 
+
+1. Download the latest version of UABE: https://github.com/DerPopo/UABE/releases
+2. Extract the files from the ZIP
+3. Execute `AssetBundleExtractor.exe`
+4. Find and make a backup of your game installation folder (usually located at `C:\GOG Games\A Short Hike\`)
+5. In UABE: File > Open... and open the file in `C:\GOG Games\A Short Hike - Backup\AShortHike_Data\resources.assets`
+6. Sort the list of assets by name or type and look for the one named `MountainQuest.yarn`.
+    ![Screenshot](uabe-text-assets.png)
+7. Export Dump
+
+You will get a text file like `MountainQuest.yarn` in this repository. The only difference is that newlines are escaped twice. This means that you should replace all `\n` with an actual newline, and all `\\n` with `\n`.
